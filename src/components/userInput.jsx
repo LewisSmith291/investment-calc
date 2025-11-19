@@ -2,6 +2,8 @@ import React from 'react'
 import { useState } from 'react'
 
 export default function UserInput() {
+  const currencySymbol = "£"
+
   const [inputVal, setInputVal] = useState( {
     begInvestment: "£",
     annInvestment: "£",
@@ -10,7 +12,7 @@ export default function UserInput() {
   });
 
   function callUserInput(inputIdentifyer, val){
-    const newVal = val.replace("£", "");
+    const newVal = val.replace(currencySymbol, "");
     // Use regex to check if user is entering letters
     // Also only allow 2 decimal places
     if (!(/^\d*\.?\d{0,2}$/.test(newVal))){

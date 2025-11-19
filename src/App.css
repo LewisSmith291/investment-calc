@@ -1,6 +1,7 @@
 body{
   margin: 0;
   font-family: sans-serif, Arial, Helvetica;
+  background-color: rgba(178, 6, 6, 0.8);
 }
 
 .App {
@@ -9,32 +10,41 @@ body{
 }
 
 #header {
-    text-align: center;
-    justify-content: center;
-    margin: 0;
-    background-color: rgba(178, 6, 6, 1);
-    padding-top: 1rem;
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5vw;
+  background-color: rgba(178, 6, 6, 1);
+  padding-top: 1rem;
+}
+
+#currency-select{
+  align-self: flex-start;
+  width: fit-content;
+  font-size: 1.5rem;
+  padding: 0.2vw;
+  margin: 0.2vw;
+}
   
-  #header img {
-    max-width: 15vw;
-    max-height: 15vw;
-    justify-self: center;
-    margin: 1rem;
-  }
+#header img {
+  max-width: 15vw;
+  max-height: 15vw;
+  margin: 1rem;
+}
   
-  #header h1 {
-    font-size: 3rem;
-    width: 100%;
-    color: white;
-    background-color: rgba(255, 255, 255, 0.2) ;
-    margin: 0;
-  }
+#header h1 {
+  font-size: 3rem;
+  width: 100%;
+  color: white;
+  background-color: rgba(255, 255, 255, 0.2) ;
+  margin: 0;
+}
 
 #input-group{
   margin: 3vw;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 5vw;
   justify-content: center;
 }
@@ -42,8 +52,4 @@ body{
 .input-section{
   display: flex;
   flex-direction: column;
-}
-
-input[type=number]{
-  appearance: textfield;
 }

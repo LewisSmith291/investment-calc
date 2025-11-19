@@ -1,29 +1,54 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-export default function UserInput() {
-  const currencySymbol = "£"
+export default function UserInput(props) {
+  const [currencySymbol,setCurrencySymbol] = useState(props.currency)
+
+  useEffect( () => {
+    setCurrencySymbol(props.currency);
+    changeCurrencySymbol();
+  }, [props, currencySymbol])
 
   const [inputVal, setInputVal] = useState( {
-    begInvestment: "£",
-    annInvestment: "£",
-    retInvestment: "£",
-    yearInvestment: "£"
+    begInvestment: currencySymbol,
+    annInvestment: currencySymbol,
+    retInvestment: currencySymbol,
+    yearInvestment: currencySymbol
   });
 
   function callUserInput(inputIdentifyer, val){
-    const newVal = val.replace(currencySymbol, "");
+    console.log(val);
+    const newVal = val.replace(/£\€\¥/, "");
+    newVal = newVal.replace("$", "");
+    console.log(newVal);
     // Use regex to check if user is entering letters
     // Also only allow 2 decimal places
-    if (!(/^\d*\.?\d{0,2}$/.test(newVal))){
+    if (!(/^\d*\.?\d{0,2}/.test(newVal))){
       return;
     }
     
     // Setting new value (val) whilst keeping others the same
-    setInputVal((prev) => ({
+    setInputVal((prev) => (
+      {
       ...prev,
-      [inputIdentifyer]: "£" + newVal
-    }))
+      [inputIdentifyer]: currencySymbol + newVal
+      }
+    ));
+  }
+
+  /*
+  useEffect(() => {
+    changeCurrencySymbol();
+  }, [props.currency]);
+  */
+  function changeCurrencySymbol(){
+    setInputVal((prev) => (
+      {
+        begInvestment: currencySymbol + inputVal.begInvestment.replace(/£|$|€|¥/, ""),
+        annInvestment: currencySymbol + inputVal.annInvestment.replace(/£|$|€|¥/, ""),
+        retInvestment: currencySymbol + inputVal.retInvestment.replace(/£|$|€|¥/, ""),
+        yearInvestment: currencySymbol + inputVal.yearInvestment.replace(/£|$|€|¥/, "")
+      }
+    ));
   }
 
   return (

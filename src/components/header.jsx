@@ -1,7 +1,7 @@
 import React from 'react'
 import logo from '../assets/logo.png'
 
-function Header(props) {
+export default function Header(props) {
   return (
     <header id="header">
       <h1>{props.title}</h1>
@@ -9,5 +9,3 @@ function Header(props) {
     </header>
   )
 }
-
-export default Header

@@ -17,12 +17,11 @@ export default function UserInput(props) {
 
   function callUserInput(inputIdentifyer, val){
     console.log(val);
-    const newVal = val.replace(/£\€\¥/, "");
-    newVal = newVal.replace("$", "");
+    var newVal = val.replace(currencySymbol, "");
     console.log(newVal);
     // Use regex to check if user is entering letters
     // Also only allow 2 decimal places
-    if (!(/^\d*\.?\d{0,2}/.test(newVal))){
+    if (!(/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/.test(newVal))){
       return;
     }
     
@@ -41,12 +40,16 @@ export default function UserInput(props) {
   }, [props.currency]);
   */
   function changeCurrencySymbol(){
+    var beg = inputVal.begInvestment;
+    var ann = inputVal.annInvestment;
+    var ret = inputVal.retInvestment;
+    var year = inputVal.yearInvestment;
     setInputVal((prev) => (
       {
-        begInvestment: currencySymbol + inputVal.begInvestment.replace(/£|$|€|¥/, ""),
-        annInvestment: currencySymbol + inputVal.annInvestment.replace(/£|$|€|¥/, ""),
-        retInvestment: currencySymbol + inputVal.retInvestment.replace(/£|$|€|¥/, ""),
-        yearInvestment: currencySymbol + inputVal.yearInvestment.replace(/£|$|€|¥/, "")
+        begInvestment: currencySymbol + inputVal.begInvestment.replace(/[¥£$€]/g, ""),
+        annInvestment: currencySymbol + inputVal.annInvestment.replace(/[¥£$€]/g, ""),
+        retInvestment: currencySymbol + inputVal.retInvestment.replace(/[¥£$€]/g, ""),
+        yearInvestment: currencySymbol + inputVal.yearInvestment.replace(/[¥£$€]/g, "")
       }
     ));
   }

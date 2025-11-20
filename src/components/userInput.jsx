@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 export default function UserInput(props) {
   const [currencySymbol,setCurrencySymbol] = useState(props.currency)
 
+  // Update the input fields to the new symbol on currency change
   useEffect( () => {
     setCurrencySymbol(props.currency);
     changeCurrencySymbol();
@@ -16,29 +17,24 @@ export default function UserInput(props) {
   });
 
   function callUserInput(inputIdentifyer, val){
-    console.log(val);
+    // remove currency symbol from new value
     var newVal = val.replace(currencySymbol, "");
-    console.log(newVal);
+
     // Use regex to check if user is entering letters
     // Also only allow 2 decimal places
     if (!(/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/.test(newVal))){
       return;
     }
     
-    // Setting new value (val) whilst keeping others the same
     setInputVal((prev) => (
       {
+        // Set the other inputs to the same, while changing the current hook to the new value
       ...prev,
       [inputIdentifyer]: currencySymbol + newVal
       }
     ));
   }
 
-  /*
-  useEffect(() => {
-    changeCurrencySymbol();
-  }, [props.currency]);
-  */
   function changeCurrencySymbol(){
     var beg = inputVal.begInvestment;
     var ann = inputVal.annInvestment;

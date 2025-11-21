@@ -29,7 +29,7 @@ export default function UserInput(props) {
       }
     }
     else {
-      if (!(/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/.test(val))){
+      if (!(/^(?:[0-9]+(?:\.[0-9]{0,5})?)?$/.test(val))){
         return;
       }
     }
@@ -60,7 +60,14 @@ export default function UserInput(props) {
   }
 
   function reset(){
-
+    setInputVal(() =>(
+    {
+        begInvestment: currencySymbol,
+        annInvestment: currencySymbol,
+        retInvestment: "",
+        yearInvestment: ""
+    }
+    ));
   }
 
 

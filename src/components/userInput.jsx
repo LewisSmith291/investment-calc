@@ -1,20 +1,14 @@
 import React, { useState, useEffect } from 'react'
 
-export default function UserInput(props) {
-  const [currencySymbol,setCurrencySymbol] = useState(props.currency)
+export default function UserInput({inputVal, setInputVal, currencySymbol, setCurrencySymbol}) {
+  
 
   // Update the input fields to the new symbol on currency change
   useEffect( () => {
-    setCurrencySymbol(props.currency);
+    setCurrencySymbol(currencySymbol);
     changeCurrencySymbol();
-  }, [props, currencySymbol]);
+  }, [currencySymbol]);
 
-  const [inputVal, setInputVal] = useState( {
-    begInvestment: currencySymbol,
-    annInvestment: currencySymbol,
-    retInvestment: "",
-    yearInvestment: ""
-  });
 
   function callUserInput(inputIdentifier, val){
     // remove currency symbol from new value
@@ -69,8 +63,6 @@ export default function UserInput(props) {
     }
     ));
   }
-
-
 
   function ResetButton(){
     return (

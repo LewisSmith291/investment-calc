@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import { useEffect } from 'react'
 
-export default function UserInput({inputVal, setInputVal, currencySymbol, setCurrencySymbol}) {
+export default function UserInput({inputVal, setInputVal, currencySymbol, setCurrencySymbol, submitFunction}) {
   
 
   // Update the input fields to the new symbol on currency change
@@ -49,8 +49,14 @@ export default function UserInput({inputVal, setInputVal, currencySymbol, setCur
     ));
   }
 
-  function submit(){
 
+
+  function ResetButton(){
+    return (
+      <button id="reset-button" className="button" onClick={reset}>
+        Reset Fields
+      </button>
+    )
   }
 
   function reset(){
@@ -64,20 +70,16 @@ export default function UserInput({inputVal, setInputVal, currencySymbol, setCur
     ));
   }
 
-  function ResetButton(){
-    return (
-      <button id="reset-button" className="button" onClick={reset}>
-        Reset Fields
-      </button>
-    )
-  }
-
   function SubmitButton(){
     return (
       <button id="submit-button" className="button" onClick={submit}>
         Submit
       </button>
     )
+  }
+
+  function submit(){
+    submitFunction();
   }
 
   return (

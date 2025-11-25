@@ -9,6 +9,7 @@ body{
   justify-content: center;
 }
 
+/* Header Section */
 #header {
   display: flex;
   flex-direction: column;
@@ -39,6 +40,8 @@ body{
   margin: 0;
 }
 
+/* Input Buttons and Fields*/
+
 #input-group{
   margin: 3vw;
   display: flex;
@@ -68,4 +71,21 @@ body{
 
 .button{
   font-size: 1.25rem;
+}
+
+/* Output Table */
+#output-table tr{
+  display: flex;
+  flex-direction: row;
+  width: 90vw;
+  justify-content: space-evenly;
+  border: solid 1px black;
+  
+}
+
+#output-table th{
+  width: 30%;
+  background-color: rgb(164, 164, 164);
+  border: solid 1px black;
+
 }

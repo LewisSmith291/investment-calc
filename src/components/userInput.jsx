@@ -72,7 +72,7 @@ export default function UserInput({inputVal, setInputVal, currencySymbol, setCur
 
   function SubmitButton(){
     return (
-      <button id="submit-button" className="button" onClick={submit}>
+      <button id="submit-button" className="button" onClick={submitFunction}>
         Submit
       </button>
     )

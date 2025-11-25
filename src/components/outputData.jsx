@@ -1,11 +1,8 @@
 import { useState } from 'react';
-import calculateInvestmentResults from '../util/investment.js';
 
-export default function OutputData({inputVal}) {
-  const [results, setResults] = useState(inputVal);
-
+export default function OutputData() {
   return (
-    <table>
+    <table id="output-table">
       <thead>
         <tr>
           <th>Year</th>
@@ -15,6 +12,17 @@ export default function OutputData({inputVal}) {
           <th>Total Amount Investment</th>
         </tr>
       </thead>
+      <tbody>
+        {/*
+          results.map(yearData => {
+            return <tr key={yearData.year}>
+                <td>{yearData.year}</td>
+                <td>{yearData.annInvestment}</td>
+            </tr>
+          })
+          */
+        }
+      </tbody>
     </table>
   )
 }

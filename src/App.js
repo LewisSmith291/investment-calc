@@ -29,7 +29,7 @@ function App() {
     <div className="App">
       <Header title="Investment Calculator" currFunc={changeCurrency}/>
       <UserInput inputVal={inputVal} setInputVal={setInputVal} currencySymbol={currencySymbol} setCurrencySymbol={setCurrencySymbol} submitFunction={submitButton}/>
-      <OutputData inputVal={output} />
+      <OutputData inputVal={inputVal} />
     </div>
   );
 }

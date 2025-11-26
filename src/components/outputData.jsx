@@ -40,20 +40,21 @@ export default function OutputData({currencySymbol, inputVal}) {
       <thead>
         <tr>
           <th className='year'>Year</th>
-          <th>Investment</th>
-          <th>Interest(year)</th>
+          <th>Initial Investment</th>
+          <th>Interest per year</th>
           <th>Total Interest</th>
           <th>Total Amount Investment</th>
         </tr>
       </thead>
       <tbody>
         {
-          results.map(results => {
+          results.map(results  => {
+            const totalInterest = null;
             return <tr key={results.year}>
               <td className='year'>{results.year}</td>
               <td className='investment'>{formatter.format(results.investmentValue)}</td>
               <td className='interest-year'>{formatter.format(results.interest)}</td>
-              <td className='interest-total'>{formatter.format(results.totalInterest)}</td>
+              <td className='interest-total'>{formatter.format(totalInterest)}</td>
               <td className='investment-total'>{formatter.format(results.investedCapital)}</td>
             </tr>
           })

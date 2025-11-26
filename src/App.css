@@ -127,17 +127,17 @@ body{
 }
 
 .investment{
-  background-color: red;
+  background-color: rgb(226, 226, 226);
 }
 
 .interest-year{
-  background-color: green;
+  background-color: rgb(215, 215, 215);
 }
 
 .interest-total{
-  background-color: green;
+  background-color: rgb(221, 221, 221);
 }
 
 .investment-total{
-  background-color: orange;
+  background-color: rgb(217, 217, 217);
 }

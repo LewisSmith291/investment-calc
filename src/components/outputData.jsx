@@ -1,11 +1,45 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-export default function OutputData() {
+
+
+
+export default function OutputData({currencySymbol, inputVal}) {
+  let acronym = "";
+  switch(currencySymbol){
+    case "£":
+    acronym = "GBP"
+      break;
+    
+    case "$":
+      acronym = 'USD'
+      break;
+
+    case "¥":
+      acronym = 'CNY'
+      break;
+
+    case "€":
+      acronym = 'EUR'
+      break;
+  }
+  const formatter = new Intl.NumberFormat('en-GB', {
+    style:'currency',
+    currency: acronym,
+    minimumFractionDigits:0,
+    maximumFractionDigits:0
+  })
+
+  const [results, setResults] = useState(calculateInvestmentResults(inputVal));
+
+  useEffect(() => {
+    setResults(calculateInvestmentResults(inputVal, currencySymbol));
+  }, [inputVal, currencySymbol]);
+
   return (
     <table id="output-table">
       <thead>
         <tr>
-          <th>Year</th>
+          <th className='year'>Year</th>
           <th>Investment</th>
           <th>Interest(year)</th>
           <th>Total Interest</th>
@@ -13,16 +47,46 @@ export default function OutputData() {
         </tr>
       </thead>
       <tbody>
-        {/*
-          results.map(yearData => {
-            return <tr key={yearData.year}>
-                <td>{yearData.year}</td>
-                <td>{yearData.annInvestment}</td>
+        {
+          results.map(results => {
+            return <tr key={results.year}>
+              <td className='year'>{results.year}</td>
+              <td className='investment'>{formatter.format(results.investmentValue)}</td>
+              <td className='interest-year'>{formatter.format(results.interest)}</td>
+              <td className='interest-total'>{formatter.format(results.totalInterest)}</td>
+              <td className='investment-total'>{formatter.format(results.investedCapital)}</td>
             </tr>
           })
-          */
         }
       </tbody>
     </table>
-  )
+  );
+
+}
+
+function calculateInvestmentResults({begInvestment, annInvestment, retInvestment, yearInvestment}, currencySymbol="£"){
+  const annualData=[];
+  let investmentValue = begInvestment;
+  let totalInterest = 0;
+  let investedCap = Number(begInvestment.slice(1,begInvestment.length));
+
+  console.log(investedCap);
+  investmentValue = Number(investmentValue.slice(1,investmentValue.length));
+  annInvestment = Number(annInvestment.slice(1,annInvestment.length)); 
+
+
+  for(let i = 0; i< yearInvestment; i++){
+    const interestEarnedInYear = investmentValue * (retInvestment / 100);
+    totalInterest += interestEarnedInYear;
+    investedCap += annInvestment;
+    investmentValue += interestEarnedInYear + annInvestment;
+    annualData.push({
+      year: i+1,
+      investmentValue: investmentValue,
+      interest: interestEarnedInYear,
+      totalInterest: totalInterest,
+      investedCapital: investedCap,
+    });
+  }
+  return annualData;
 }

@@ -1,12 +1,14 @@
 body{
   margin: 0;
   font-family: sans-serif, Arial, Helvetica;
-  background-color: rgba(60, 230, 79, 1);
+  background-color: rgba(237, 255, 185, 1);
 }
 
 .App {
   text-align: center;
   justify-content: center;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Header Section */
@@ -43,13 +45,17 @@ body{
 /* Input Buttons and Fields*/
 
 #input-group{
-  margin: 3vw;
+  margin: 1vw;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   gap: 5vw;
-  justify-content: center;
+  justify-content: start;
   font-size: 1.25rem;
+}
+
+#user-input{
+  background-color: rgba(136, 222, 90, 0.79);
 }
 
 .input-section{
@@ -62,30 +68,76 @@ body{
 }
 
 #buttons{
+  margin: 1vw;
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   gap: 5vw;
-  justify-content: center;
-  align-content: center;
+  justify-content: start;
+  font-size: 1.25rem;
 }
 
 .button{
+  padding: 0.5vw;
   font-size: 1.25rem;
 }
 
 /* Output Table */
-#output-table tr{
-  display: flex;
-  flex-direction: row;
-  width: 90vw;
-  justify-content: space-evenly;
-  border: solid 1px black;
-  
+
+#output-table{
+  margin: 1vw;
+  margin-top: 2vw;
 }
 
-#output-table th{
-  width: 30%;
-  background-color: rgb(164, 164, 164);
-  border: solid 1px black;
+#output-table tr{
+  padding-left: 2.5vw;
+  display: flex;
+  flex-direction: row;
+  width: 95vw;
+  justify-content: center;
+}
 
+#output-table tr .year{
+  width: 3vw;
+}
+
+#output-table tr > *{
+  padding: 0.5vw;
+}
+#output-table tr th{
+  border-radius: 0.1vw;
+  width: 20%;
+  border: solid 1px black;
+  background-color: rgba(204, 254, 255, 1);
+  margin:0.1vw;
+  font-size: 2rem;
+}
+
+#output-table tr td{
+  font-size: 2rem;
+  border-radius: 0.1vw;
+  width: 20%;
+  border: solid 1px black;
+  margin:0.1vw;
+  overflow-x: auto;
+}
+
+.year{
+  background-color: rgba(204, 254, 255, 1);
+}
+
+.investment{
+  background-color: red;
+}
+
+.interest-year{
+  background-color: green;
+}
+
+.interest-total{
+  background-color: green;
+}
+
+.investment-total{
+  background-color: orange;
 }

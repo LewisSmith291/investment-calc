@@ -6,9 +6,10 @@ export default function calculateInvestmentResults({initialInvestment, annualInv
 
   for(let i = 0; i< duration; i++){
     const interestEarnedInYear = investmentValue * (expectedReturn / 100);
-    totalInterest += interestEarnedInYear;
     investedCap += annualInvestment;
     investmentValue += interestEarnedInYear + annualInvestment;
+    totalInterest += interestEarnedInYear;
+    console.log("Post- in year: "+interestEarnedInYear+" investValue:"+investmentValue + "Total: "+totalInterest);
     annualData.push({
       year: i+1,
       interest: interestEarnedInYear,

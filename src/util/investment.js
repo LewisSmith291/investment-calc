@@ -1,22 +1,32 @@
-export default function calculateInvestmentResults({initialInvestment, annualInvestment, expectedReturn, duration}){
+export function calculateInvestmentResults({begInvestment, annInvestment, retInvestment, yearInvestment}, currencySymbol="£"){
   const annualData=[];
-  let investmentValue=initialInvestment;
+  let annualInvestment = Number(annInvestment.slice(1,annInvestment.length)); 
+  let initialInvestment = Number(begInvestment.slice(1,begInvestment.length));
   let totalInterest = 0;
-  let investedCap = initialInvestment;
+  let interestEarnedInYear = 0;
+  let investedCap = Number(begInvestment.slice(1,begInvestment.length));
 
-  for(let i = 0; i< duration; i++){
-    const interestEarnedInYear = investmentValue * (expectedReturn / 100);
+  let pot = investedCap;
+
+
+  for(let i = 0; i< yearInvestment; i++){
+    pot += annualInvestment;
+    interestEarnedInYear = pot * (retInvestment / 100);
+    pot = pot + interestEarnedInYear;
+
     investedCap += annualInvestment;
-    investmentValue += interestEarnedInYear + annualInvestment;
+
     totalInterest += interestEarnedInYear;
-    console.log("Post- in year: "+interestEarnedInYear+" investValue:"+investmentValue + "Total: "+totalInterest);
+
     annualData.push({
       year: i+1,
-      interest: interestEarnedInYear,
-      investmentValue: investmentValue,
+      investmentValue: initialInvestment,
+      interest: annualInvestment,
       totalInterest: totalInterest,
       investedCapital: investedCap,
+      totalPot: pot
     });
   }
+  
   return annualData;
 }

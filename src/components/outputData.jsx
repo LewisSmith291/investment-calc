@@ -34,12 +34,12 @@ export default function OutputData({currencySymbol, inputVal}) {
 
   const [results, setResults] = useState(calculateInvestmentResults(inputVal));
 
-  //console.log(inputVal);
+  
   useEffect(() => {
     setResults(calculateInvestmentResults(inputVal, currencySymbol));
     console.log(inputVal);
   }, [inputVal, currencySymbol]);
-
+  
 
   return (
     <table id="output-table">
@@ -50,7 +50,7 @@ export default function OutputData({currencySymbol, inputVal}) {
           <th>Interest per year</th>
           <th>Total Interest</th>
           <th>Total Added Investment</th>
-          <th>Total Funds of Investment</th>
+          <th>Total Personal Investment</th>
         </tr>
       </thead>
       <tbody>
@@ -71,7 +71,7 @@ export default function OutputData({currencySymbol, inputVal}) {
   );
 }
 
-function calculateInvestmentResults({begInvestment, annInvestment, retInvestment, yearInvestment}, currencySymbol="£"){
+export function calculateInvestmentResults({begInvestment, annInvestment, retInvestment, yearInvestment}, currencySymbol="£"){
   const annualData=[];
   let annualInvestment = Number(annInvestment.slice(1,annInvestment.length)); 
   let initialInvestment = Number(begInvestment.slice(1,begInvestment.length));
@@ -101,6 +101,5 @@ function calculateInvestmentResults({begInvestment, annInvestment, retInvestment
     });
   }
   
-  console.log(annualData);
   return annualData;
 }

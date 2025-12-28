@@ -3,6 +3,7 @@ import './App.css';
 import Header from './components/header';
 import UserInput from './components/userInput';
 import OutputData from './components/outputData';
+import calculateInvestmentResults from './components/outputData';
 
 function App() {
   const [currencySymbol,setCurrencySymbol] = useState("£")
@@ -19,14 +20,14 @@ function App() {
     setCurrencySymbol(val);
   }
 
-  function submitButton(){
+  function GenerateReportButton(){
     
   }
 
   return (
     <div className="App">
       <Header title="Investment Calculator" currFunc={changeCurrency}/>
-      <UserInput inputVal={inputVal} setInputVal={setInputVal} currencySymbol={currencySymbol} setCurrencySymbol={setCurrencySymbol} submitFunction={submitButton}/>
+      <UserInput inputVal={inputVal} setInputVal={setInputVal} currencySymbol={currencySymbol} setCurrencySymbol={setCurrencySymbol} reportButton={GenerateReportButton}/>
       <OutputData currencySymbol={currencySymbol} inputVal={inputVal} />
     </div>
   );

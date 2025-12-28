@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
+import { generatepdf } from '../util/generatereport';
+import {calculateInvestmentResults} from '../util/investment';
 
-export default function UserInput({inputVal, setInputVal, currencySymbol, setCurrencySymbol, submitFunction}) {
-  
-
+export default function UserInput({inputVal, setInputVal, currencySymbol, setCurrencySymbol, reportButton}) {
   // Update the input fields to the new symbol on currency change
   useEffect( () => {
     setCurrencySymbol(currencySymbol);
@@ -72,14 +72,15 @@ export default function UserInput({inputVal, setInputVal, currencySymbol, setCur
 
   function SubmitButton(){
     return (
-      <button id="submit-button" className="button" onClick={submitFunction}>
-        Submit
+      <button id="submit-button" className="button" onClick={ReportButton}>
+        Generate Report
       </button>
     )
   }
 
-  function submit(){
-    submitFunction();
+  function ReportButton(){
+    const resultData = calculateInvestmentResults(inputVal);
+    generatepdf({...inputVal, results: resultData}, currencySymbol);
   }
 
   return (

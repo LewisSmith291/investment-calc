@@ -87,7 +87,6 @@ body{
 /* Output Table */
 
 #output-table{
-  margin: 1vw;
   margin-top: 2vw;
 }
 
@@ -112,11 +111,11 @@ body{
   border: solid 1px black;
   background-color: rgba(204, 254, 255, 1);
   margin:0.1vw;
-  font-size: 2rem;
+  font-size: 1rem;
 }
 
 #output-table tr td{
-  font-size: 2rem;
+  font-size: 1.5rem;
   border-radius: 0.1vw;
   width: 20%;
   border: solid 1px black;
